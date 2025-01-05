@@ -421,9 +421,13 @@ bool processingFileFunction(const char* section, const char* key,
         P = ESP_OUTPUT_CLIENT;
         done = true;
         if (strcasecmp("USB", value) == 0) {
-          b = ESP3DClientType::usb_serial;
+          std::byte USBSerialByteValue = static_cast<std::byte>(static_cast<uint8_t>(ESP3DClientType::usb_serial));
+          uint8_t USBSerialIntValue = static_cast<uint8_t>(USBSerialByteValue);
+          b = static_cast<byte>(USBSerialIntValue);
         } else if (strcasecmp("SERIAL", value) == 0) {
-          b = ESP3DClientType::serial;
+          std::byte SerialByteValue = static_cast<std::byte>(static_cast<uint8_t>(ESP3DClientType::serial));
+          uint8_t SerialIntValue = static_cast<uint8_t>(SerialByteValue);
+          b = static_cast<byte>(SerialIntValue);
         } else {
           P = -1;  // invalid value
         }
